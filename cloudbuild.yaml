@@ -11,7 +11,7 @@ steps:
     args: 
       - '-c'
       - >
-        gcloud alpha deploy releases create rel-$(date +%y%m%d-%s)
+        gcloud beta deploy releases create rel-$(date +%y%m%d-%s)
         --delivery-pipeline=web-app --build-artifacts=artifacts.json
         --source=./
         --region=us-central1
