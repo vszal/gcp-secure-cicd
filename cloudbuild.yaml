@@ -1,0 +1,19 @@
+steps:
+  - name: gcr.io/k8s-skaffold/skaffold
+    args:
+      - skaffold
+      - build
+      - '--interactive=false'
+      - '--default-repo=us-central1-docker.pkg.dev/vsz-cd-preview/web-app'
+      - '--file-output=artifacts.json'
+    dir: example
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    args: 
+      - '-c'
+      - >
+        gcloud alpha deploy releases create $(date +%y%m%d-%s)
+        --delivery-pipeline=web-app --build-artifacts=artifacts.json
+        --source=./
+        --region=us-central1
+    dir: example
+    entrypoint: bash 

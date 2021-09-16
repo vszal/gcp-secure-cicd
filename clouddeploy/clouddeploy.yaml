@@ -1,0 +1,38 @@
+apiVersion: deploy.cloud.google.com/v1beta1
+kind: DeliveryPipeline
+metadata:
+  name: web-app
+description: web-app delivery pipeline
+serialPipeline:
+ stages:
+ - targetId: test
+ - targetId: staging
+ - targetId: prod
+---
+
+apiVersion: deploy.cloud.google.com/v1beta1
+kind: Target
+metadata:
+  name: test
+description: test cluster
+gke:
+ cluster: projects/vsz-cd-preview/locations/us-central1/clusters/testcluster
+---
+
+apiVersion: deploy.cloud.google.com/v1beta1
+kind: Target
+metadata:
+  name: staging
+description: staging cluster
+gke:
+ cluster: projects/vsz-cd-preview/locations/us-central1/clusters/stagingcluster
+---
+
+apiVersion: deploy.cloud.google.com/v1beta1
+kind: Target
+metadata:
+  name: prod
+description: prod cluster
+requireApproval: true
+gke:
+ cluster: projects/vsz-cd-preview/locations/us-central1/clusters/prodcluster
