@@ -16,7 +16,7 @@ metadata:
   name: test
 description: test cluster
 gke:
- cluster: projects/vsz-cd-preview/locations/us-central1/clusters/testcluster
+  cluster: projects/vsz-cd-preview/locations/us-central1/clusters/testcluster
 ---
 
 apiVersion: deploy.cloud.google.com/v1beta1
@@ -25,7 +25,7 @@ metadata:
   name: staging
 description: staging cluster
 gke:
- cluster: projects/vsz-cd-preview/locations/us-central1/clusters/stagingcluster
+  cluster: projects/vsz-cd-preview/locations/us-central1/clusters/stagingcluster
 ---
 
 apiVersion: deploy.cloud.google.com/v1beta1
@@ -35,4 +35,4 @@ metadata:
 description: prod cluster
 requireApproval: true
 gke:
- cluster: projects/vsz-cd-preview/locations/us-central1/clusters/prodcluster
+  cluster: projects/vsz-cd-preview/locations/us-central1/clusters/prodcluster
