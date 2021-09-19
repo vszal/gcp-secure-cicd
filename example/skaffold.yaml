@@ -7,7 +7,7 @@ build:
     - image: leeroy-app
       context: leeroy-app
   googleCloudBuild:
-    projectId: vsz-cd-preview
+    projectId: $PROJECT_ID
 deploy:
   kubectl:
     manifests:
