@@ -1,0 +1,12 @@
+# Cleanup script to delete the three clusters created by the gke-cluster-init.sh script
+# ACTION REQUIRED! Change "project-id-here" value to the project you'll be using
+export PROJECT_ID="project-id-here"
+# Test cluster
+echo "Deleting testcluster..."
+gcloud container clusters delete testcluster
+# Staging cluster
+echo "Deleting stagingcluster..."
+gcloud container clusters delete stagingcluster
+# Prod cluster
+echo "Deleting prodcluster..."
+gcloud container clusters delete prodcluster
