@@ -8,7 +8,7 @@ This demo relies on you making check-ins to the repo to simulate a developer wor
 The `init.sh` script is provided to bootstrap much of the configuration setup. You'll still need to do some steps manually after this script runs though.
 
 1. Replace project-id-here with your Google Cloud project-id on line 3.
-2. run `./init.sh`
+2. run `. ./init.sh`
 3. Verify that the Google Cloud Deploy pipeline was created in [Google Cloud Deploy UI](https://console.google.com/deploy/delivery-pipelines)
 4. Setup a Cloud Build trigger for your repo
   * Navigate to [Cloud Build triggers page](https://console.google.com/cloud-build/triggers)
@@ -24,7 +24,7 @@ If you have/want different cluster names update cluster definitions in the gke-c
 
 To create the clusters, find `gke-cluster-init.sh`:
 1. Replace project-id-here with your project-id on line 3.
-2. Run `./gke-cluster-init.sh`
+2. Run `. ./gke-cluster-init.sh`
 
 ## IAM and service account setup
 You must give Cloud Build explicit permission to trigger a Cloud Deploy release.
@@ -47,4 +47,4 @@ The demo is very simple at this stage.
 ## Tear down
 To remove the three running GKE clusters run, find `gke-cluster-delete.sh`:
 1. Replace project-id-here with your project-id on line 3.
-2. Run `./gke-cluster-delete.sh`
+2. Run `. ./gke-cluster-delete.sh`
