@@ -6,14 +6,14 @@ steps:
       - '--interactive=false'
       - '--default-repo=us-central1-docker.pkg.dev/$PROJECT_ID/web-app'
       - '--file-output=artifacts.json'
-    dir: example
+    dir: app
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     args: 
       - '-c'
       - >
-        gcloud beta deploy releases create rel-$(date +%y%m%d-%s)
+        gcloud beta deploy releases create rel-$SHORT_SHA
         --delivery-pipeline=web-app --build-artifacts=artifacts.json
         --source=./
         --region=us-central1
-    dir: example
+    dir: app
     entrypoint: bash 
