@@ -15,7 +15,7 @@ gcloud beta container --project "$PROJECT_ID" clusters create-auto "stagingclust
 --cluster-ipv4-cidr "/17" --services-ipv4-cidr "/22"
 # Prod cluster
 echo "creating prodcluster..."
-gcloud beta container --project "$PROJECT_ID" clusters create-auto "stagingcluster" \
+gcloud beta container --project "$PROJECT_ID" clusters create-auto "prodcluster" \
 --region "us-central1" --release-channel "regular" --network "projects/$PROJECT_ID/global/networks/default" \
 --subnetwork "projects/$PROJECT_ID/regions/us-central1/subnetworks/default" \
 --cluster-ipv4-cidr "/17" --services-ipv4-cidr "/22"
