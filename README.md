@@ -1,10 +1,12 @@
 # Google Cloud CI/CD End-to-End Demo
-The purpose of this repository is to provide configuration files that demonstrate the use of Google Cloud Deploy in an end to end CI/CD workflow.
+The purpose of this repository is to showcase Google Cloud DevOps products in an end-to-end CI/CD workflow. Google Cloud Deploy, Cloud Build, and Artifact Registry are featured.
 
-## Repo
-This demo relies on you making check-ins to the repo to simulate a developer workflow. Fork this repo, or otherwise copy it into your own Github repo.
+## Create a repo
+This demo relies on you making git check-ins to simulate a developer workflow. Fork this repo, or otherwise copy it into your own Github repo.
 
 ## Bootstrap
+Bootstrap scripts are in the `bootstrap` folder.
+
 The `init.sh` script is provided to bootstrap much of the configuration setup. You'll still need to do some steps manually after this script runs though.
 
 1. Replace project-id-here with your Google Cloud project-id on line 3.
@@ -22,9 +24,9 @@ You'll need GKE clusters to deploy out to as part of the demo. This repo refers 
 
 If you have/want different cluster names update cluster definitions in the gke-cluster-init.sh bash script and in clouddeploy.yaml
 
-To create the clusters, find `gke-cluster-init.sh`:
-1. Replace project-id-here with your project-id on line 3.
-2. Run `. ./gke-cluster-init.sh`
+To create the clusters, edit `bootstrap/gke-cluster-init.sh`:
+1. Replace `project-id-here` with your project-id on line 3.
+2. Run `. .bootstrap/gke-cluster-init.sh`
 
 ## IAM and service account setup
 You must give Cloud Build explicit permission to trigger a Cloud Deploy release.
@@ -45,6 +47,6 @@ The demo is very simple at this stage.
   * staging cluster to product cluster, with approval gate
 
 ## Tear down
-To remove the three running GKE clusters run, find `gke-cluster-delete.sh`:
-1. Replace project-id-here with your project-id on line 3.
-2. Run `. ./gke-cluster-delete.sh`
+To remove the three running GKE clusters, edit `bootstrap/gke-cluster-delete.sh`:
+1. Replace `project-id-here` with your project-id on line 3.
+2. Run `. .bootstrap/gke-cluster-delete.sh`
