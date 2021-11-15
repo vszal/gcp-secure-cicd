@@ -4,6 +4,10 @@ The purpose of this repository is to showcase Google Cloud DevOps products in an
 ## Create a repo
 This demo relies on you making git check-ins to simulate a developer workflow. Fork this repo, or otherwise copy it into your own Github repo.
 
+## Customize Cloud Deploy yaml
+
+1. In `clouddeploy.yaml`, replace `project-id-here` with your actual project for each of the three targets.
+
 ## Bootstrap
 Bootstrap scripts are in the `bootstrap` folder.
 
