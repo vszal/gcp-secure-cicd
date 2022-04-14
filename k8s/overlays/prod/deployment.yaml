@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pop-stats
+  labels:
+    env: prod
+spec:
+  replicas: 3
+  template:
+    spec:
+      containers:
+          - name: pop-stats
+            livenessProbe:
+              httpGet:
+                path: /h
+                port: 8080
+              initialDelaySeconds: 30
+              periodSeconds: 6
+            env:
+              - name: SITE_NAME
+                value: "Population Stats Prod"

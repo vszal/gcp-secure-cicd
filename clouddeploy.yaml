@@ -1,9 +1,9 @@
-### replace "project-id-here" with your actual project for each of the three targets.
-apiVersion: deploy.cloud.google.com/v1beta1
+# replace "project-id-here" in the three targets below with your actual project(s)
+apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
 metadata:
-  name: web-app
-description: web-app delivery pipeline
+  name: pop-stats-pipeline
+description: pop-stats application delivery pipeline
 serialPipeline:
  stages:
  - targetId: test
@@ -15,7 +15,7 @@ serialPipeline:
    - prod
 ---
 
-apiVersion: deploy.cloud.google.com/v1beta1
+apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
   name: test
@@ -24,7 +24,7 @@ gke:
   cluster: projects/project-id-here/locations/us-central1/clusters/testcluster
 ---
 
-apiVersion: deploy.cloud.google.com/v1beta1
+apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
   name: staging
@@ -33,7 +33,7 @@ gke:
   cluster: projects/project-id-here/locations/us-central1/clusters/stagingcluster
 ---
 
-apiVersion: deploy.cloud.google.com/v1beta1
+apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
   name: prod

@@ -1,19 +1,54 @@
+# Overview: build and create a release via Google Cloud Deploy for GKE
+# NOTE: currently requires SCM triggering due to dependency on the COMMIT_SHA variable
 steps:
-  - name: gcr.io/k8s-skaffold/skaffold
+  # Build and tag using commit sha
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}', '-f', 'Dockerfile']
+    dir: 'app'
+  # Run api tests
+  - name: 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}'
+    entrypoint: python
+    args: ["api_tests.py"]
+    dir: 'app'
+  # Push the container image to Artifact Registry
+  - name: gcr.io/cloud-builders/docker
+    entrypoint: /bin/bash
     args:
-      - skaffold
-      - build
-      - '--interactive=false'
-      - '--default-repo=us-central1-docker.pkg.dev/$PROJECT_ID/web-app'
-      - '--file-output=artifacts.json'
-    dir: app
+    - -c
+    - |
+      docker push us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA} &&
+      docker image inspect us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA} --format '{{index .RepoDigests 0}}' > image-digest.txt &&
+      cat image-digest.txt
+    id: push
+  - name: gcr.io/$PROJECT_ID/kritis-signer
+    entrypoint: /bin/bash
+    args:
+    - -c
+    - |
+      /kritis/signer \
+      -v=10 \
+      -alsologtostderr \
+      -image=$(/bin/cat image-digest.txt) \
+      -policy=policy.yaml \
+      -kms_key_name=${_KMS_KEY_NAME} \
+      -kms_digest_alg=${_KMS_DIGEST_ALG} \
+      -note_name=${_NOTE_NAME}
+    waitFor: push
+    id: vulnsign
+  # Create release in Google Cloud Deploy
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
     args: 
-      - '-c'
-      - >
-        gcloud beta deploy releases create rel-$SHORT_SHA
-        --delivery-pipeline=web-app --build-artifacts=artifacts.json
-        --source=./
-        --region=us-central1
-    dir: app
-    entrypoint: bash 
+      [
+        "deploy", "releases", "create", "rel-${SHORT_SHA}",
+        "--delivery-pipeline", "pop-stats-pipeline",
+        "--region", "us-central1",
+        "--annotations", "commitId=${REVISION_ID}",
+        "--images", "pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}"
+      ]
+    waitFor: vulnsign
+images:
+- us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}
+options:
+  requestedVerifyOption: VERIFIED
+    
