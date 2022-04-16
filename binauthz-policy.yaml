@@ -1,0 +1,6 @@
+defaultAdmissionRule:
+  enforcementMode: ENFORCED_BLOCK_AND_AUDIT_LOG
+  evaluationMode: REQUIRE_ATTESTATION
+  requireAttestationsBy:
+  - projects/vsz-demo/attestors/built-by-cloud-build
+name: projects/vsz-demo/policy

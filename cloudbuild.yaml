@@ -53,4 +53,9 @@ images:
 - us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}
 options:
   requestedVerifyOption: VERIFIED
+# Set these variables in your trigger or directly in the below stanza and uncomment 
+#substitutions:
+#    _KMS_KEY_NAME: MISSING_KMS_KEY_NAME 
+#    _KMS_DIGEST_ALG: MISSING_KMS_DIGEST_ALG 
+#    _NOTE_NAME: MISSING_NOTE_NAME 
     

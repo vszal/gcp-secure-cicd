@@ -1,0 +1,21 @@
+export KMS_DIGEST_ALG=SHA256
+export KMS_KEY_NAME=projects/$PROJECT_ID/locations/global/keyRings/s3c-ring/cryptoKeys/cloud-build-key/cryptoKeyVersions/1
+
+export NOTE_ID=build-vuln-check
+export NOTE_NAME=projects/${PROJECT_ID}/notes/${NOTE_ID}
+
+ATTESTOR_NAME=build-vuln-check
+
+gcloud --project="${PROJECT_ID}" \
+     container binauthz attestors create "${ATTESTOR_NAME}" \
+    --attestation-authority-note="${NOTE_ID}" \
+    --attestation-authority-note-project="${PROJECT_ID}"
+
+gcloud --project="${ATTESTOR_PROJECT_ID}" \
+     container binauthz attestors public-keys add \
+    --attestor="${ATTESTOR_NAME}" \
+    --keyversion-project="${KMS_KEY_PROJECT_ID}" \
+    --keyversion-location="${KMS_KEY_LOCATION}" \
+    --keyversion-keyring="${KMS_KEYRING_NAME}" \
+    --keyversion-key="${KMS_KEY_NAME}" \
+    --keyversion="${KMS_KEY_VERSION}"
