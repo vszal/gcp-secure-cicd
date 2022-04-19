@@ -38,17 +38,17 @@ steps:
     waitFor: ['push']
     id: vulnsign
   # Create release in Google Cloud Deploy
-  #- name: gcr.io/google.com/cloudsdktool/cloud-sdk
-  #  entrypoint: gcloud
-  #  args: 
-  #    [
-  #      "deploy", "releases", "create", "rel-${SHORT_SHA}",
-  #      "--delivery-pipeline", "pop-stats-pipeline",
-  #      "--region", "us-central1",
-  #      "--annotations", "commitId=${REVISION_ID}",
-  #      "--images", "pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}"
-  #    ]
-  #  waitFor: vulnsign
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args: 
+      [
+        "deploy", "releases", "create", "rel-${SHORT_SHA}",
+        "--delivery-pipeline", "pop-stats-pipeline",
+        "--region", "us-central1",
+        "--annotations", "commitId=${REVISION_ID}",
+        "--images", "pop-stats=us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}"
+      ]
+    waitFor: vulnsign
 images:
 - us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}
 options:
