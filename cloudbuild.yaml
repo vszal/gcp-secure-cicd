@@ -48,9 +48,9 @@ steps:
       -releases \
       -create=rel-${SHORT_SHA} \
       -delivery-pipeline=security-demo-pipelne \
-      "--region=us-central1 \
-      "--annotations=commitId=${REVISION_ID} \
-      "--images=pop-stats=$(/bin/cat image-digest.txt)
+      --region=us-central1 \
+      --annotations=commitId=${REVISION_ID} \
+      --images=pop-stats=$(/bin/cat image-digest.txt)
     waitFor: ['vulnsign']
 images:
 - us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}
