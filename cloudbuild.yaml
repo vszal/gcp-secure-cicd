@@ -54,7 +54,7 @@ images:
 options:
   requestedVerifyOption: VERIFIED
   pool:
-    name: 'projects/$PROJECT_ID/locations/us-central1/workerPools/no-internet'
+    name: 'projects/$PROJECT_ID/locations/us-central1/workerPools/private-pool'
 # Set these variables in your trigger or directly in the below stanza and uncomment 
 #substitutions:
 #    _KMS_KEY_NAME: MISSING_KMS_KEY_NAME 
