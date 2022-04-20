@@ -43,6 +43,7 @@ steps:
     args:
     - -c
     - |
+      gcloud \
       -deploy \
       -releases \
       -create=rel-${SHORT_SHA} \
