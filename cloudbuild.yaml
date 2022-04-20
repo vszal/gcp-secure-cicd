@@ -31,7 +31,7 @@ steps:
       -v=10 \
       -alsologtostderr \
       -image=$(/bin/cat image-digest.txt) \
-      -policy=policy.yaml \
+      -policy=./policy/vulnz-signing-policy.yaml \
       -kms_key_name=${_KMS_KEY_NAME} \
       -kms_digest_alg=${_KMS_DIGEST_ALG} \
       -note_name=${_NOTE_NAME}
