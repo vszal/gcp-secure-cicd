@@ -12,7 +12,10 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # deterministic image reference
-FROM python:3.10-slim@sha256:425d893546dbb7c9984aad25cd219a4f9086e48e6990c0368aa2ce3670e9bc6e
+FROM python:3.10-slim@sha256:e266c9c8a5a11df3183675b60a0a61b8cf22a9eeb4b229af86dcd2daf0f4475a
+
+# Remove vulnerable openssl package               
+RUN apt-get -y remove openssl
 
 # add nonroot group/user
 RUN groupadd -g 999 nonroot && \
