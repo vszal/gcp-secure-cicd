@@ -8,8 +8,8 @@ fi
 # Test cluster
 echo "creating test-sec..."
 gcloud beta container --project "$PROJECT_ID" clusters create "test-sec" \
---region "us-central1" --no-enable-basic-auth --cluster-version "1.22.7-gke.1500" \
---release-channel "rapid" --machine-type "e2-medium" --image-type "COS_CONTAINERD" \
+--region "us-central1" --no-enable-basic-auth  --release-channel "rapid" \
+--machine-type "e2-medium" --image-type "COS_CONTAINERD" \
 --disk-type "pd-standard" --disk-size "100" --metadata disable-legacy-endpoints=true \
 --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" \
 --max-pods-per-node "110" --num-nodes "2" --logging=SYSTEM,WORKLOAD \
@@ -23,8 +23,8 @@ gcloud beta container --project "$PROJECT_ID" clusters create "test-sec" \
 # Test cluster
 echo "creating prod-sec..."
 gcloud beta container --project "$PROJECT_ID" clusters create "prod-sec" \
---region "us-central1" --no-enable-basic-auth --cluster-version "1.22.7-gke.1500" \
---release-channel "rapid" --machine-type "e2-medium" --image-type "COS_CONTAINERD" \
+--region "us-central1" --no-enable-basic-auth  --release-channel "rapid" \
+--machine-type "e2-medium" --image-type "COS_CONTAINERD" \
 --disk-type "pd-standard" --disk-size "100" --metadata disable-legacy-endpoints=true \
 --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" \
 --max-pods-per-node "110" --num-nodes "2" --logging=SYSTEM,WORKLOAD \
