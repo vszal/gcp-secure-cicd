@@ -1,21 +1,20 @@
 # GCP CI/CD security demo and tutorial 
-This repo demostrates CI/CD for GKE with Google Cloud tools Google Cloud Deploy, Cloud Build, and Artifact Registry. The example app is based on a simple Python Flask example app named "Population Stats" and uses Kustomize overlays to enable configuration differences across three different environments: test, staging, and prod! 
+This repo demostrates a security focused CI/CD pipeline for GKE with Google Cloud tools Cloud Build, Binary Authorization, Artifact Registry, Container Analysis, and Google Cloud Deploy. The example app is a simple Python Flask example app named "Population Stats" and uses Kustomize overlays.
 
-[![Demo flow](https://user-images.githubusercontent.com/76225123/145627874-86971a34-768b-4fc0-9e96-d7a769961321.png)](https://user-images.githubusercontent.com/76225123/145627874-86971a34-768b-4fc0-9e96-d7a769961321.png)
+[![Google Cloud Software Supply Chain Security Demo Flow](https://user-images.githubusercontent.com/76225123/170594159-cae11896-5ac1-473c-8d71-924a8d059155.png)](https://user-images.githubusercontent.com/76225123/170594159-cae11896-5ac1-473c-8d71-924a8d059155.png)
 
 ## Fork this repo
-This demo relies on you making git check-ins to simulate a developer workflow. So you'll need your own copy of these files in your own Github.com repo.
+This demo relies on you making git check-ins to simulate a developer workflow. So you'll need your own copy of these files in your own repo.
+To do that in Github use, [fork this repo on Github](https://github.com/vszal/gcp-secure-cicd/fork)
 
-[Fork this repo on Github](https://github.com/vszal/pop-kustomize/fork)
-
-If you've already done that, you can start the setup tutorial below.
+Once you've forked, start the tutorial below.
 
 ## Setup tutorial
-The following tutorial walks you through all the setup needed to configure Google Cloud services needed to run this demo. Clicking this button provisions a Cloud Shell Editor and launches an interactive tutorial which steps you through the process. Google Cloud account and project required.
+The following tutorial walks you through all the setup needed to configure Google Cloud services needed to run this demo and then steps you through the demo itself. Clicking this button provisions a Cloud Shell Editor and launches an interactive tutorial which steps you through the process. Google Cloud account and project required.
 
-[![Start tutorial in cloud shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/open?git_repo=https://github.com/vszal/pop-kustomize&cloudshell_workspace=.&cloudshell_tutorial=tutorial.md)
+[![Start tutorial in cloud shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/open?git_repo=https://github.com/vszal/gcp-secure-cicd&cloudshell_workspace=.&cloudshell_tutorial=tutorial.md)
 
-If you don't want to run the tutorial in Cloud Shell, you can view the md file [here](https://github.com/vszal/pop-kustomize/blob/main/tutorial.md).
+If you don't want to run the tutorial in Cloud Shell, you can view the md file [here](https://github.com/vszal/gcp-secure-cicd/blob/main/tutorial.md) although you'll see some artifacts.
 
 ## About the Sample app - Population stats
 
