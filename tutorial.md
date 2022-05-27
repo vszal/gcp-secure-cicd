@@ -1,13 +1,13 @@
 <walkthrough-metadata>
-  <meta name="title" content="Google Cloud CI/CD End-to-End Demo" />
-  <meta name="description" content="Guide for helping you get up and running with Google Cloud CI/CD" />
-  <meta name="component_id" content="102" />
+  <meta name="title" content="GCP CI/CD security demo and tutorial" />
+  <meta name="description" content="Demostrates a security focused CI/CD pipeline for GKE with Google Cloud tools Cloud Build, Binary Authorization, Artifact Registry, Container Analysis, and Google Cloud Deploy." />
+  <meta name="component_id" content="103" />
 </walkthrough-metadata>
 
 <walkthrough-disable-features toc></walkthrough-disable-features>
 
-# Google Cloud End to End CI/CD tutorial
-This tutorial will help you get up and running with Google Cloud CI/CD, including Cloud Build, Google Cloud Deploy, and Artifact Registry
+# GCP CI/CD security demo and tutorial
+This repo demostrates a security focused CI/CD pipeline for GKE with Google Cloud tools Cloud Build, Binary Authorization, Artifact Registry, Container Analysis, and Google Cloud Deploy.
 
 ## Select a project
 
@@ -36,12 +36,12 @@ Run the initialization script:
 . ./bootstrap/init.sh
 ```
 
-### Check out your Google Cloud Deploy Pipeline
+### View your Google Cloud Deploy Pipeline
 
 Verify that the Google Cloud Deploy pipeline was created in the 
 [Google Cloud Deploy UI](https://console.cloud.google.com/deploy/delivery-pipelines)
 
-## (Optional) Turn on automated container vulnerability analysis
+## Turn on automated container vulnerability analysis
 Google Cloud Container Analysis can be set to automatically scan for vulnerabilities on push (see [pricing](https://cloud.google.com/container-analysis/pricing)). 
 
 Enable Container Analysis API for automated scanning:
@@ -50,9 +50,9 @@ Enable Container Analysis API for automated scanning:
 
 ## Configure your Github.com repo
 
-If you have not fork this repo yet, please do so now:
+If you have not forked this repo yet, please do so now:
 
-[Fork this repo on Github](https://github.com/vszal/pop-kustomize/fork)
+[Fork this repo on Github](https://github.com/vszal/gcp-secure-cicd/fork)
 
 To keep file changes you make in Cloud Shell in sync with your repo, you can check these file changes into your new Github repo by following these [docs](https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github). Note that the Github CLI is available in Cloud Shell.
 
@@ -63,21 +63,21 @@ Now that your Github repo is setup, configure Cloud Build to run each time a cha
   * Follow the [docs](https://cloud.google.com/build/docs/automating-builds/build-repos-from-github) and create a Github App connected repo and trigger.
 
 ## Create GKE clusters
-You'll need GKE clusters to deploy to. The Google Cloud Deploy pipeline in this example refers to three clusters:
-* testcluster
-* stagingcluster
-* productcluster
+You'll need GKE clusters to deploy to. The Google Cloud Deploy pipeline in this example refers to two clusters:
+* test-sec
+* prod-sec
 
-If you have/want different cluster names update cluster definitions in:
-* <walkthrough-editor-select-regex filePath="bootstrap/gke-cluster-init.sh" regex="cluster">bootstrap/gke-cluster-init.sh</walkthrough-editor-select-regex>
-* <walkthrough-editor-select-regex filePath="clouddeploy.yaml" regex="cluster">clouddeploy.yaml</walkthrough-editor-select-regex>
-* <walkthrough-editor-select-regex filePath="bootstrap/gke-cluster-delete.sh" regex="cluster">bootstrap/gke-cluster-delete.sh</walkthrough-editor-select-regex>
+Feel free to add more clusters, just update the clouddeploy.yaml file with the additional steps and targets. If you have/want different cluster names update cluster definitions in:
+* <walkthrough-editor-open-file filePath="bootstrap/gke-init.sh">bootstrap/gke-init.sh</walkthrough-editor-open-file>
+* <walkthrough-editor-open-file filePath="clouddeploy.yaml">clouddeploy.yaml</walkthrough-editor-open-file>
+* <walkthrough-editor-open-file filePath="bootstrap/gke-delete.sh">bootstrap/gke-delete.sh</walkthrough-editor-open-file>
 
+Make sure you have Binary Authorization enabled for any existing clusters you may want to use.
 
-### Create the three GKE Autopilot clusters
+### Create GKE clusters
 
 ```bash
-. ./bootstrap/gke-cluster-init.sh
+. ./bootstrap/gke-init.sh
 ```
 
 Note that these clusters are created asynchronously, so check on the [GKE UI]("https://console.cloud.google.com/kubernetes/list/overview") periodically to ensure that the clusters are up before submitting your first release to Google Cloud Deploy.
@@ -110,7 +110,7 @@ cloudbuild.yaml</walkthrough-editor-open-file>  configuration file, which:
 
 To remove the three running GKE clusters, run:
 ```bash
-. ./bootstrap/gke-cluster-delete.sh
+. ./bootstrap/gke-delete.sh
 ```
 
 ## Local dev (optional)
@@ -120,7 +120,7 @@ To run this app locally, start minikube:
 minikube start
 ```
 
-From the pop-kustomize directory, run:
+From the base directory, run:
 ```bash
 skaffold dev
 ```
