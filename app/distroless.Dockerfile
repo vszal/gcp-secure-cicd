@@ -12,7 +12,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy the virtualenv into a distroless image (use :debug-nonroot for tools)
-FROM gcr.io/distroless/python3:debug-nonroot
+FROM gcr.io/distroless/python3:nonroot
 
 COPY --chown=nonroot:nonroot --from=build /opt/venv /opt/venv
 COPY --chown=nonroot:nonroot . /home/nonroot
