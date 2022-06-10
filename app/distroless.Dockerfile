@@ -12,11 +12,13 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy the virtualenv into a distroless image (use :debug-nonroot for tools)
-FROM gcr.io/distroless/python3:nonroot
-COPY --from=build /opt/venv /opt/venv
+FROM gcr.io/distroless/python3:debug-nonroot
+
+COPY --chown=nonroot:nonroot --from=build /opt/venv /opt/venv
 COPY --chown=nonroot:nonroot . /home/nonroot
 # gunicorn needs this path
 ENV PYTHONPATH=/opt/venv/lib/python3.9/site-packages
+#ENV PATH="/opt/venv/bin:$PATH"
 WORKDIR /opt/venv/bin
 # Service must listen to $PORT environment variable.
 ENV PORT 8080
