@@ -36,11 +36,9 @@ COPY --from=build /usr/app/venv $HOME/venv
 COPY --chown=nonroot:nonroot . .
 RUN sudo chown -R $USER:$USER $HOME
 
-#COPY --chown=nonroot:nonroot . .
-
 # add venv to the path
 ENV PATH="$HOME/venv/bin:$PATH"
 ENV PORT 8080
 ENV GUNICORN_CMD_ARGS="--workers 2 --threads 2 -b 0.0.0.0:8080 --chdir $HOME"
 # Run the web service on container startup.
-ENTRYPOINT ["sh", "/home/nonroot/venv/bin/gunicorn", "app:app"]
+CMD ["gunicorn", "app:app"]
