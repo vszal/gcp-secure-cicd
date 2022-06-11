@@ -10,17 +10,18 @@ RUN python -m venv /usr/app/venv
 ENV PATH="/usr/app/venv/bin:$PATH"
 
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+#RUN /usr/app/venv/bin/pip install gunicorn
+RUN /usr/app/venv/bin/pip install -r requirements.txt
 
 # deterministic image reference
 FROM python:3.10-alpine
 
 ARG USER=nonroot
-ENV HOME /home/$USER
+ENV HOME=/home/$USER
 
 # install sudo as root
 RUN apk add --update sudo
-RUN apk add --no-cache bash
+RUN apk add py3-gunicorn
 
 # add new user
 RUN addgroup --system --gid 2999 $USER && \
@@ -36,9 +37,12 @@ COPY --from=build /usr/app/venv $HOME/venv
 COPY --chown=nonroot:nonroot . .
 RUN sudo chown -R $USER:$USER $HOME
 
+#RUN /home/nonroot/venv/bin/pip install gunicorn
 # add venv to the path
-ENV PATH="$HOME/venv/bin:$PATH"
+#ENV PATH="$HOME/venv/bin:$PATH"
+ENV PYTHONPATH=/home/nonroot/venv/lib/python3.10/site-packages
 ENV PORT 8080
+EXPOSE 8080
 ENV GUNICORN_CMD_ARGS="--workers 2 --threads 2 -b 0.0.0.0:8080 --chdir $HOME"
 # Run the web service on container startup.
-CMD ["gunicorn", "app:app"]
+CMD ["gunicorn",  "app:app"]
