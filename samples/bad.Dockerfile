@@ -1,5 +1,6 @@
-# multi-stage build
-FROM python:3.10-slim as build
+# CONTAINS VULNERABILITIES! DO NOT RUN IN PRODUCTION
+# This sample demonstrates a vulnerable base image (python:3.10-slim)
+FROM python:3.10-slim@sha256:e266c9c8a5a11df3183675b60a0a61b8cf22a9eeb4b229af86dcd2daf0f4475a as build
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
 build-essential gcc 
@@ -11,7 +12,7 @@ ENV PATH="/usr/app/venv/bin:$PATH"
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-# deterministic image reference
+# known vulnerable image reference
 FROM python:3.10-slim@sha256:e266c9c8a5a11df3183675b60a0a61b8cf22a9eeb4b229af86dcd2daf0f4475a
 
 # add nonroot group/user
