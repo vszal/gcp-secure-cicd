@@ -14,9 +14,6 @@ RUN pip install -r requirements.txt
 # deterministic image reference
 FROM python:3.10-slim@sha256:e266c9c8a5a11df3183675b60a0a61b8cf22a9eeb4b229af86dcd2daf0f4475a
 
-# Remove vulnerable openssl package               
-RUN apt-get -y remove openssl
-
 # add nonroot group/user
 RUN groupadd -g 999 nonroot && \
     useradd -r -u 999 -g nonroot nonroot

@@ -90,49 +90,23 @@ You must give Cloud Build explicit permission to trigger a Google Cloud Deploy r
   * Cloud Deploy Releaser
   * Service Account User
 
+## Binary Authorization attestor setup
+
+This section is WIP
+
+## Binary Authorization policy
+
+This section is WIP
 
 ## Demo Overview
 
-[![Demo flow](https://user-images.githubusercontent.com/76225123/145627874-86971a34-768b-4fc0-9e96-d7a769961321.png)](https://user-images.githubusercontent.com/76225123/145627874-86971a34-768b-4fc0-9e96-d7a769961321.png)
+[![Google Cloud Software Supply Chain Security Demo Flow](https://user-images.githubusercontent.com/76225123/170594159-cae11896-5ac1-473c-8d71-924a8d059155.png)](https://user-images.githubusercontent.com/76225123/170594159-cae11896-5ac1-473c-8d71-924a8d059155.png)
 
-The demo flow outlines a typical developer pathway, submitting a change to a Git repo which then triggers a CI/CD process:
-1. Push a change the main branch of your forked repo. You can make any change such as a trivial change to the README.md file.
-2. A Cloud Build job is automatically triggered, using the <walkthrough-editor-open-file filePath="cloudbuild.yaml">
-cloudbuild.yaml</walkthrough-editor-open-file>  configuration file, which:
-  * builds and pushes impages to Artifact Registry
-  * creates a Google Cloud Deploy release in the pipeline
-3. You can then navigate to Google Cloud Deploy UI and shows promotion events:
-  * test cluster to staging clusters
-  * staging cluster to product cluster, with approval gate
-
+This section is WIP
 
 ## Tear down
 
 To remove the three running GKE clusters, run:
 ```bash
 . ./bootstrap/gke-delete.sh
-```
-
-## Local dev (optional)
-
-To run this app locally, start minikube:
-```bash 
-minikube start
-```
-
-From the base directory, run:
-```bash
-skaffold dev
-```
-
-The default skaffold settings use the "dev" Kustomize overlay. Once running, you can make file changes and observe the rebuilding of the container and redeployment. Use Ctrl-C to stop the Skaffold process.
-
-To test the staging overlays/profile run:
-```bash
-skaffold dev --profile staging
-```
-
-To test the staging overlays/profile locally, run:
-```bash
-skaffold dev --profile prod
 ```

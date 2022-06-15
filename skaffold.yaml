@@ -10,7 +10,7 @@ build:
   - image: pop-stats
     context: app
     docker:
-      dockerfile: distroless.Dockerfile
+      dockerfile: Dockerfile
 deploy:
   kustomize:
     paths: 

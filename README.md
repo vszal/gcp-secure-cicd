@@ -9,7 +9,7 @@ To do that in Github use, [fork this repo on Github](https://github.com/vszal/gc
 
 Once you've forked, start the tutorial below.
 
-## Setup tutorial
+## Setup tutorial - WIP
 The following tutorial walks you through all the setup needed to configure Google Cloud services needed to run this demo and then steps you through the demo itself. Clicking this button provisions a Cloud Shell Editor and launches an interactive tutorial which steps you through the process. Google Cloud account and project required.
 
 [![Start tutorial in cloud shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/open?git_repo=https://github.com/vszal/gcp-secure-cicd&cloudshell_workspace=.&cloudshell_tutorial=tutorial.md)

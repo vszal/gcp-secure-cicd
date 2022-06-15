@@ -26,7 +26,8 @@ COPY --from=build /usr/app/venv $HOME/venv
 COPY --chown=nonroot:nonroot . .
 RUN sudo chown -R $USER:$USER $HOME
 
-# for prod, remove busybox
+# for prod, remove busybox (comment out to debug)
+RUN apk del sudo
 RUN rm -rf /bin/busybox
 
 # change user context to nonroot

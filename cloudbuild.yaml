@@ -3,7 +3,7 @@
 steps:
   # Build and tag using commit sha
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}', '-f', 'alpine.Dockerfile']
+    args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}', '-f', 'Dockerfile']
     dir: 'app'
     id: build
   # Run api tests
@@ -55,7 +55,7 @@ options:
   requestedVerifyOption: VERIFIED
   pool:
     name: 'projects/$PROJECT_ID/locations/us-central1/workerPools/private-pool'
-# Set these variables in your trigger or directly in the below stanza and uncomment 
+# Set these variables in your trigger or directly in the substitutions stanza below: 
 #substitutions:
 #    _KMS_KEY_NAME: MISSING_KMS_KEY_NAME 
 #    _KMS_DIGEST_ALG: MISSING_KMS_DIGEST_ALG 
