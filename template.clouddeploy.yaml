@@ -15,7 +15,7 @@ serialPipeline:
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
-  name: test
+  name: test-sec
 description: test cluster
 gke:
   cluster: projects/project-id-here/locations/us-central1-a/clusters/test-sec
@@ -24,7 +24,7 @@ gke:
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
-  name: prod
+  name: prod-sec
 description: prod cluster
 requireApproval: true
 gke:
