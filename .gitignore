@@ -1,5 +1,3 @@
-clouddeploy.yaml
-!template.clouddeploy.yaml
 *.code-workspace
 .git/*
 *_local.*

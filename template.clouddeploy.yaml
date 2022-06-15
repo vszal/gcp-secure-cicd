@@ -3,7 +3,7 @@ apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
 metadata:
   name: security-demo-pipelne
-description: A security-focused CI/CD pipeline on GCP
+description: Security-focused CI/CD pipeline on GCP
 serialPipeline:
  stages:
  - targetId: test
