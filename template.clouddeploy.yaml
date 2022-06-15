@@ -18,7 +18,7 @@ metadata:
   name: test
 description: test cluster
 gke:
-  cluster: projects/project-id-here/locations/us-central1a/clusters/test-sec
+  cluster: projects/project-id-here/locations/us-central1-a/clusters/test-sec
 ---
 
 apiVersion: deploy.cloud.google.com/v1
@@ -28,4 +28,4 @@ metadata:
 description: prod cluster
 requireApproval: true
 gke:
-  cluster: projects/project-id-here/locations/us-central1a/clusters/prod-sec
+  cluster: projects/project-id-here/locations/us-central1-a/clusters/prod-sec
