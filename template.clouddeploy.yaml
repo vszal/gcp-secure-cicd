@@ -6,8 +6,8 @@ metadata:
 description: Security-focused CI/CD pipeline on GCP
 serialPipeline:
  stages:
- - targetId: test
- - targetId: prod
+ - targetId: test-sec
+ - targetId: prod-sec
    profiles:
    - prod
 ---
