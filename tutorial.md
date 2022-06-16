@@ -90,13 +90,15 @@ You must give Cloud Build explicit permission to trigger a Google Cloud Deploy r
   * Cloud Deploy Releaser
   * Service Account User
 
-## Binary Authorization attestor setup
+## Kritis Signer and attestor setup
 
 This section is WIP
+See: https://cloud.google.com/binary-authorization/docs/creating-attestations-kritis
 
 ## Binary Authorization policy
 
 This section is WIP
+See: https://cloud.google.com/binary-authorization/docs/setting-up
 
 ## Demo Overview
 
