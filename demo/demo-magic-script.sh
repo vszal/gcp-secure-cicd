@@ -51,7 +51,6 @@ pe "clear"
 pe "gcloud builds submit --config=cloudbuild-ci-only.yaml"
 
 ## BinAuthz / policy demo
-
 # Set kubernetes context
 pe "clear"
 
