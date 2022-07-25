@@ -1,0 +1,1 @@
+This directory gets populated by running the bootstrap/init.sh script
