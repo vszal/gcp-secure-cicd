@@ -104,7 +104,8 @@ See: https://cloud.google.com/binary-authorization/docs/setting-up
 
 [![Google Cloud Software Supply Chain Security Demo Flow](https://user-images.githubusercontent.com/76225123/170594159-cae11896-5ac1-473c-8d71-924a8d059155.png)](https://user-images.githubusercontent.com/76225123/170594159-cae11896-5ac1-473c-8d71-924a8d059155.png)
 
-This section is WIP
+This section is WIP.
+For now, see the [gist](https://gist.github.com/vszal/2bca4b844e70449022f153ed4dc87e41)
 
 ## Tear down
 
