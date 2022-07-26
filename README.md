@@ -17,7 +17,7 @@ The following tutorial walks you through all the setup needed to configure Googl
 If you don't want to run the tutorial in Cloud Shell, you can view the md file [here](https://github.com/vszal/gcp-secure-cicd/blob/main/tutorial.md) although you'll see some artifacts.
 
 ## Demo commands
-See the [gist](https://gist.github.com/vszal/2bca4b844e70449022f153ed4dc87e41)
+See the [gist](https://gist.github.com/vszal/2bca4b844e70449022f153ed4dc87e41).
 
 ## About the Sample app - Population stats
 
